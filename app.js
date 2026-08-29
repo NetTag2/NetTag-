@@ -99,9 +99,18 @@ if (signinForm) {
       const profileDisplay = document.getElementById("profileDisplay");
 
       if (profileName) profileName.textContent = user.name;
-      if (profileTag) profileTag.textContent = user.tag;
-      if (profileEmail) profileEmail.textContent = user.email;
-      if (profileDisplay) profileDisplay.style.display = "block";
+if (profileTag) profileTag.textContent = user.tag;
+if (profileEmail) profileEmail.textContent = user.email;
+
+const dashboardName = document.getElementById("dashboardName");
+const dashboardTag = document.getElementById("dashboardTag");
+const dashboardEmail = document.getElementById("dashboardEmail");
+
+if (dashboardName) dashboardName.textContent = user.name;
+if (dashboardTag) dashboardTag.textContent = user.tag;
+if (dashboardEmail) dashboardEmail.textContent = user.email;
+
+if (profileDisplay) profileDisplay.style.display = "block";
 
     } catch (error) {
       console.error(error);
