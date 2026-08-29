@@ -6,36 +6,147 @@
   <title>NetTag — Hotel Picture Rating</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-<header class="top"><div class="brand">NetTag</div><div class="badge">Hotel Picture Rating</div></header>
+
+<header class="top">
+  <div class="brand">NetTag</div>
+  <div class="badge">Hotel Picture Rating</div>
+</header>
 
 <main>
+
   <section class="hero">
     <div>
       <p class="eyebrow">NETTAG</p>
       <h1>Rate hotel pictures.<br>Build your reviewer profile.</h1>
-      <p class="sub">A simple demo platform for reviewing hotel images and tracking reviewer points.</p>
-      <button onclick="document.getElementById('tasks').scrollIntoView({behavior:'smooth'})">Start rating</button>
+      <p class="sub">
+        A simple demo platform for reviewing hotel images and tracking reviewer points.
+      </p>
+      <button onclick="document.getElementById('tasks').scrollIntoView({behavior:'smooth'})">
+        Start rating
+      </button>
     </div>
+
     <div class="card profile">
       <div class="avatar">N</div>
       <h2 id="profileName">Guest Reviewer</h2>
-      <p>@guest</p>
-      <div class="stats"><span><b id="points">0</b><small>Points</small></span><span><b id="rated">0</b><small>Pictures rated</small></span></div>
+      <p id="profileTag">@guest</p>
+
+      <div class="stats">
+        <span>
+          <b id="points">0</b>
+          <small>Points</small>
+        </span>
+        <span>
+          <b id="rated">0</b>
+          <small>Pictures rated</small>
+        </span>
+      </div>
+
+      <p id="profileEmail"></p>
     </div>
   </section>
 
+
+  <!-- CREATE ACCOUNT -->
+  <section class="card">
+    <h2>Create your NetTag</h2>
+
+    <form id="signupForm">
+
+      <input
+        id="name"
+        type="text"
+        placeholder="Full name"
+        required
+      >
+
+      <input
+        id="tag"
+        type="text"
+        placeholder="@yourtag"
+        required
+      >
+
+      <input
+        id="email"
+        type="email"
+        placeholder="Email address"
+        required
+      >
+
+      <button type="submit">Create profile</button>
+
+    </form>
+  </section>
+
+
+  <!-- SIGN IN -->
+  <section class="card">
+    <h2>Welcome back</h2>
+
+    <form id="signinForm">
+
+      <input
+        id="loginTag"
+        type="text"
+        placeholder="@yourtag"
+        required
+      >
+
+      <button type="submit">Open profile</button>
+
+    </form>
+  </section>
+
+
+  <!-- PROFILE -->
+  <section id="profileDisplay" class="card" style="display:none;">
+
+    <h2>Your NetTag Profile</h2>
+
+    <p>
+      <strong>Name:</strong>
+      <span id="profileNameDisplay"></span>
+    </p>
+
+    <p>
+      <strong>NetTag:</strong>
+      <span id="profileTagDisplay"></span>
+    </p>
+
+    <p>
+      <strong>Email:</strong>
+      <span id="profileEmailDisplay"></span>
+    </p>
+
+  </section>
+
+
+  <!-- TASKS -->
   <section id="tasks">
     <h2>Hotel rating tasks</h2>
     <div id="taskList" class="grid"></div>
   </section>
 
+
   <section class="notice">
     <h2>About this demo</h2>
-    <p>NetTag is presented here as a hotel-picture rating platform. This demo does not take deposits, promise investment returns, or process withdrawals.</p>
+    <p>
+      NetTag is presented here as a hotel-picture rating platform.
+      This demo does not take deposits, promise investment returns,
+      or process withdrawals.
+    </p>
   </section>
+
 </main>
-<footer>© 2026 NetTag. Hotel Picture Rating Demo.</footer>
+
+<footer>
+  © 2026 NetTag. Hotel Picture Rating Demo.
+</footer>
+
 <script src="app.js"></script>
+
 </body>
 </html>
