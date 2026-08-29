@@ -9,7 +9,7 @@ if (signupForm) {
     event.preventDefault();
 
     const name = document.getElementById("name").value.trim();
-    const tag = document.getElementById("tag").value.trim().toLowerCase();
+    const tag = document.getElementById("tag").value.trim().replace(/^@/, "").toLowerCase();
     const email = document.getElementById("email").value.trim();
 
     if (!name || !tag || !email) {
@@ -33,17 +33,17 @@ if (signupForm) {
 
     localStorage.setItem("nettagProfiles", JSON.stringify(profiles));
 
+    document.getElementById("profileName").textContent = name;
+    document.getElementById("profileTag").textContent = "@" + tag;
+    document.getElementById("profileEmail").textContent = email;
+
+    document.getElementById("profileNameDisplay").textContent = name;
+    document.getElementById("profileTagDisplay").textContent = "@" + tag;
+    document.getElementById("profileEmailDisplay").textContent = email;
+
+    document.getElementById("profileDisplay").style.display = "block";
+
     alert("NetTag account created successfully!");
-
-    // Show the new profile
-    const profileDisplay = document.getElementById("profileDisplay");
-
-    if (profileDisplay) {
-      document.getElementById("profileName").textContent = name;
-      document.getElementById("profileTag").textContent = "@" + tag;
-      document.getElementById("profileEmail").textContent = email;
-      profileDisplay.style.display = "block";
-    }
 
     signupForm.reset();
   });
@@ -57,6 +57,7 @@ if (signinForm) {
 
     const loginTag = document.getElementById("loginTag").value
       .trim()
+      .replace(/^@/, "")
       .toLowerCase();
 
     if (!profiles[loginTag]) {
@@ -66,15 +67,15 @@ if (signinForm) {
 
     const profile = profiles[loginTag];
 
-    const profileDisplay = document.getElementById("profileDisplay");
+    document.getElementById("profileName").textContent = profile.name;
+    document.getElementById("profileTag").textContent = "@" + profile.tag;
+    document.getElementById("profileEmail").textContent = profile.email;
 
-    if (profileDisplay) {
-      document.getElementById("profileName").textContent = profile.name;
-      document.getElementById("profileTag").textContent = "@" + profile.tag;
-      document.getElementById("profileEmail").textContent = profile.email;
+    document.getElementById("profileNameDisplay").textContent = profile.name;
+    document.getElementById("profileTagDisplay").textContent = "@" + profile.tag;
+    document.getElementById("profileEmailDisplay").textContent = profile.email;
 
-      profileDisplay.style.display = "block";
-    }
+    document.getElementById("profileDisplay").style.display = "block";
 
     alert(`Welcome back, ${profile.name}!`);
   });
