@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>NetTag — Hotel Picture Rating</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top"><div class="brand">NetTag</div><div class="badge">Hotel Picture Rating</div></header>
+
+<main>
+  <section class="hero">
+    <div>
+      <p class="eyebrow">NETTAG</p>
+      <h1>Rate hotel pictures.<br>Build your reviewer profile.</h1>
+      <p class="sub">A simple demo platform for reviewing hotel images and tracking reviewer points.</p>
+      <button onclick="document.getElementById('tasks').scrollIntoView({behavior:'smooth'})">Start rating</button>
+    </div>
+    <div class="card profile">
+      <div class="avatar">N</div>
+      <h2 id="profileName">Guest Reviewer</h2>
+      <p>@guest</p>
+      <div class="stats"><span><b id="points">0</b><small>Points</small></span><span><b id="rated">0</b><small>Pictures rated</small></span></div>
+    </div>
+  </section>
+
+  <section id="tasks">
+    <h2>Hotel rating tasks</h2>
+    <div id="taskList" class="grid"></div>
+  </section>
+
+  <section class="notice">
+    <h2>About this demo</h2>
+    <p>NetTag is presented here as a hotel-picture rating platform. This demo does not take deposits, promise investment returns, or process withdrawals.</p>
+  </section>
+</main>
+<footer>© 2026 NetTag. Hotel Picture Rating Demo.</footer>
+<script src="app.js"></script>
+</body>
+</html>
