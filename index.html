@@ -102,7 +102,43 @@
 
 
   <!-- PROFILE -->
-  <section id="profileDisplay" class="card" style="display:none;">
+  <section id="profileDisplay" class="dashboard" style="display:none;">
+
+  <h2>NetTag Dashboard</h2>
+  <p>Welcome, <strong id="dashboardName"></strong>!</p>
+
+  <div class="stats">
+    <div class="card">
+      <b id="dashboardPoints">0</b>
+      <small>Points</small>
+    </div>
+
+    <div class="card">
+      <b id="dashboardRated">0</b>
+      <small>Pictures Rated</small>
+    </div>
+
+    <div class="card">
+      <b id="dashboardTasks">0</b>
+      <small>Tasks Completed</small>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Hotel Rating Tasks</h3>
+    <p>Complete available hotel-picture rating tasks to earn reviewer points.</p>
+    <button onclick="document.getElementById('tasks').scrollIntoView({behavior:'smooth'})">
+      View Tasks
+    </button>
+  </div>
+
+  <div class="card">
+    <h3>Account</h3>
+    <p><strong>NetTag:</strong> <span id="dashboardTag"></span></p>
+    <p><strong>Email:</strong> <span id="dashboardEmail"></span></p>
+  </div>
+
+</section>
 
     <h2>Your NetTag Profile</h2>
 
