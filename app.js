@@ -58,7 +58,9 @@ if (signinForm) {
       return;
     }
 
-    showDashboard(profiles[loginTag]);
+    localStorage.setItem("nettagCurrentUser", loginTag);
+
+showDashboard(profiles[loginTag]);
   });
 }
 
@@ -100,7 +102,7 @@ if (signupForm) {
       "nettagProfiles",
       JSON.stringify(profiles)
     );
-
+localStorage.setItem("nettagCurrentUser", tag);
     signupForm.reset();
 
     showDashboard(profile);
