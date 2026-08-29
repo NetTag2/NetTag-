@@ -3,13 +3,43 @@ const signinForm = document.getElementById("signinForm");
 
 let profiles = JSON.parse(localStorage.getItem("nettagProfiles")) || {};
 
+function openDashboard(profile) {
+  document.getElementById("profileName").textContent = profile.name;
+  document.getElementById("profileTag").textContent = "@" + profile.tag;
+  document.getElementById("profileEmail").textContent = profile.email;
+
+  document.getElementById("dashboardName").textContent = profile.name;
+  document.getElementById("dashboardTag").textContent = "@" + profile.tag;
+  document.getElementById("dashboardEmail").textContent = profile.email;
+
+  document.getElementById("dashboardPoints").textContent =
+    profile.points || 0;
+
+  document.getElementById("dashboardRated").textContent =
+    profile.picturesRated || 0;
+
+  document.getElementById("dashboardTasks").textContent =
+    profile.tasksCompleted || 0;
+
+  document.getElementById("profileDisplay").style.display = "block";
+
+  document.getElementById("profileDisplay").scrollIntoView({
+    behavior: "smooth"
+  });
+}
+
+
 // CREATE ACCOUNT
 if (signupForm) {
   signupForm.addEventListener("submit", function (event) {
     event.preventDefault();
 
     const name = document.getElementById("name").value.trim();
-    const tag = document.getElementById("tag").value.trim().replace(/^@/, "").toLowerCase();
+    const tag = document.getElementById("tag").value
+      .trim()
+      .replace(/^@/, "")
+      .toLowerCase();
+
     const email = document.getElementById("email").value.trim();
 
     if (!name || !tag || !email) {
@@ -22,35 +52,32 @@ if (signupForm) {
       return;
     }
 
-    profiles[tag] = {
+    const profile = {
       name: name,
       tag: tag,
       email: email,
-      balance: 0,
-      totalEarned: 0,
+      points: 0,
+      picturesRated: 0,
       tasksCompleted: 0
     };
 
-    localStorage.setItem("nettagProfiles", JSON.stringify(profiles));
+    profiles[tag] = profile;
 
-    document.getElementById("profileName").textContent = name;
-    document.getElementById("profileTag").textContent = "@" + tag;
-    document.getElementById("profileEmail").textContent = email;
-
-    document.getElementById("profileNameDisplay").textContent = name;
-    document.getElementById("profileTagDisplay").textContent = "@" + tag;
-    document.getElementById("profileEmailDisplay").textContent = email;
-
-    document.getElementById("profileDisplay").style.display = "block";
-
-    alert("NetTag account created successfully!");
+    localStorage.setItem(
+      "nettagProfiles",
+      JSON.stringify(profiles)
+    );
 
     signupForm.reset();
+
+    openDashboard(profile);
+
+    alert("NetTag account created successfully!");
   });
 }
 
 
-// OPEN PROFILE
+// SIGN IN
 if (signinForm) {
   signinForm.addEventListener("submit", function (event) {
     event.preventDefault();
@@ -65,18 +92,8 @@ if (signinForm) {
       return;
     }
 
-    const profile = profiles[loginTag];
+    openDashboard(profiles[loginTag]);
 
-    document.getElementById("profileName").textContent = profile.name;
-    document.getElementById("profileTag").textContent = "@" + profile.tag;
-    document.getElementById("profileEmail").textContent = profile.email;
-
-    document.getElementById("profileNameDisplay").textContent = profile.name;
-    document.getElementById("profileTagDisplay").textContent = "@" + profile.tag;
-    document.getElementById("profileEmailDisplay").textContent = profile.email;
-
-    document.getElementById("profileDisplay").style.display = "block";
-
-    alert(`Welcome back, ${profile.name}!`);
+    alert(`Welcome back, ${profiles[loginTag].name}!`);
   });
 }
