@@ -3,7 +3,14 @@ const signinForm = document.getElementById("signinForm");
 
 let profiles = JSON.parse(localStorage.getItem("nettagProfiles")) || {};
 
-function openDashboard(profile) {
+function showDashboard(profile) {
+  const dashboard = document.getElementById("profileDisplay");
+
+  if (!dashboard) {
+    alert("Dashboard section was not found.");
+    return;
+  }
+
   document.getElementById("profileName").textContent = profile.name;
   document.getElementById("profileTag").textContent = "@" + profile.tag;
   document.getElementById("profileEmail").textContent = profile.email;
@@ -21,10 +28,37 @@ function openDashboard(profile) {
   document.getElementById("dashboardTasks").textContent =
     profile.tasksCompleted || 0;
 
-  document.getElementById("profileDisplay").style.display = "block";
+  dashboard.style.display = "block";
 
-  document.getElementById("profileDisplay").scrollIntoView({
-    behavior: "smooth"
+  setTimeout(function () {
+    dashboard.scrollIntoView({ behavior: "smooth" });
+  }, 100);
+}
+
+
+// SIGN IN
+if (signinForm) {
+  signinForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const loginInput = document.getElementById("loginTag");
+
+    if (!loginInput) {
+      alert("Login field not found.");
+      return;
+    }
+
+    const loginTag = loginInput.value
+      .trim()
+      .replace(/^@/, "")
+      .toLowerCase();
+
+    if (!profiles[loginTag]) {
+      alert("NetTag profile not found.");
+      return;
+    }
+
+    showDashboard(profiles[loginTag]);
   });
 }
 
@@ -39,7 +73,6 @@ if (signupForm) {
       .trim()
       .replace(/^@/, "")
       .toLowerCase();
-
     const email = document.getElementById("email").value.trim();
 
     if (!name || !tag || !email) {
@@ -70,30 +103,6 @@ if (signupForm) {
 
     signupForm.reset();
 
-    openDashboard(profile);
-
-    alert("NetTag account created successfully!");
-  });
-}
-
-
-// SIGN IN
-if (signinForm) {
-  signinForm.addEventListener("submit", function (event) {
-    event.preventDefault();
-
-    const loginTag = document.getElementById("loginTag").value
-      .trim()
-      .replace(/^@/, "")
-      .toLowerCase();
-
-    if (!profiles[loginTag]) {
-      alert("NetTag profile not found.");
-      return;
-    }
-
-    openDashboard(profiles[loginTag]);
-
-    alert(`Welcome back, ${profiles[loginTag].name}!`);
+    showDashboard(profile);
   });
 }
